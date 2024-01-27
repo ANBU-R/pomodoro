@@ -1,4 +1,5 @@
 import { POMODORO, SHORT, LONG } from "./Const.js";
+import PropTypes from "prop-types";
 
 const SwitchButton = ({ currTimer, setCurrTimer }) => {
   return (
@@ -28,5 +29,10 @@ const SwitchButton = ({ currTimer, setCurrTimer }) => {
       </button>
     </section>
   );
+};
+
+SwitchButton.propTypes = {
+  currTimer: PropTypes.string.isRequired,
+  setCurrTimer: PropTypes.func.isRequired,
 };
 export default SwitchButton;

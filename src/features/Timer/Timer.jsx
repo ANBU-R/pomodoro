@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
 let timer;
 const Timer = ({ min }) => {
   const [seconds, setSeconds] = useState(0);
@@ -22,7 +24,6 @@ const Timer = ({ min }) => {
         setSeconds(intervalSeconds);
       }
     }, 1000);
-    console.log(timer);
   };
   const stopTimer = () => {
     clearInterval(timer);
@@ -63,4 +64,9 @@ const Timer = ({ min }) => {
     </div>
   );
 };
+
+Timer.propTypes = {
+  min: PropTypes.number.isRequired,
+};
+
 export default Timer;
