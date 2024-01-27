@@ -1,0 +1,10 @@
+.nav {
+  @apply flex flex-row h-[10vh] px-2 bg-indigo-800 justify-between items-center;
+}
+
+.nav-logo {
+  @apply flex flex-row h-[100%] items-center;
+}
+.nav-button {
+  @apply h-[50%] bg-indigo-300 p-1 rounded-sm;
+}
