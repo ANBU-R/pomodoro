@@ -1,10 +1,11 @@
 import "./App.css";
+import TimeBox from "./features/Timer/TimeBox";
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold text-cyan-800 underline ">
-      Hello world!
-    </h1>
+    <div className="w-full flex flex-col justify-center items-center h-screen bg-indigo-400">
+      <TimeBox />
+    </div>
   );
 }
 
