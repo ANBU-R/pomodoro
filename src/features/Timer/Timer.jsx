@@ -7,6 +7,11 @@ const Timer = ({ min }) => {
   const [minutes, setMinutes] = useState(min);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
+  useEffect(() => {
+    clearInterval(timer);
+    setSeconds(0);
+    setMinutes(min);
+  }, [min]);
   const startTimer = () => {
     let intervalSeconds = seconds;
     let intervalMinutes = minutes;
