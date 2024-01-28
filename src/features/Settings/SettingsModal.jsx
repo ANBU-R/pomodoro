@@ -1,9 +1,12 @@
+import "./Settings.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
 import { changeTime } from "../Timer/timerSlice";
 import Input from "./Input";
+import { hideSettings } from "./settingsSlice";
+import CloseImg from "../../assets/close.svg";
 
 const SettingsModal = ({ pomodoro, long, short }) => {
   const [formPomodoro, setFormPomodoro] = useState(pomodoro);
@@ -20,11 +23,22 @@ const SettingsModal = ({ pomodoro, long, short }) => {
         shortBreak: Number(formShort),
       })
     );
+    dispatch(hideSettings());
   };
   return (
-    <div className=" bg-white p-3 rounded-sm">
-      <form onSubmit={submitHandler} className="flex flex-col">
-        <div className=" flex flex-row m-2">
+    <div className="overlay" onClick={() => dispatch(hideSettings())}>
+      <form
+        onSubmit={submitHandler}
+        onClick={(e) => e.stopPropagation()}
+        className="settings-form"
+      >
+        <div className="flex w-[100%] justify-end">
+          <button className="" onClick={() => dispatch(hideSettings())}>
+            <img src={CloseImg} alt="close" className="h-5" />
+          </button>
+        </div>
+
+        <div className=" flex flex-row m-2 justify-between">
           <Input
             label={"Pomodoro"}
             name={"pomodoro"}
