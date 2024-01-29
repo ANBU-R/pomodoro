@@ -22,7 +22,7 @@ const Input = ({ name, label, value, setValue }) => {
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   setValue: PropTypes.func.isRequired,
 };
 export default Input;
