@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'pomofoc'
           slot-name: 'Production'
-          package: .
+          package: ./dist
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_98E8ECC86DD14B1887EDA17FFA8C67EB }}
