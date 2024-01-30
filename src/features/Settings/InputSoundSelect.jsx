@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 const InputSoundSelect = ({ label, options, value, onChange }) => {
   return (
     <div>
-      <label htmlFor="ticking">{label}</label>
+      <label htmlFor={label.replaceAll(" ", "")}>{label}</label>
       <select
-        name="ticking"
-        id="ticking"
+        name={label.replaceAll(" ", "")}
+        id={label.replaceAll(" ", "")}
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >
