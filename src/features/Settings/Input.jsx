@@ -10,7 +10,7 @@ const Input = ({ name, label, value, setValue }) => {
         type="number"
         id="pomodoro"
         value={value}
-        className="text-center border-2"
+        className="text-center input-border"
         onChange={(e) => {
           setValue(e.target.value);
         }}

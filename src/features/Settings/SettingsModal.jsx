@@ -3,15 +3,18 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-import { changeTime } from "../Timer/timerSlice";
+import { changeTickingSoundType, changeTime } from "../Timer/timerSlice";
 import Input from "./Input";
 import { hideSettings } from "./settingsSlice";
 import CloseImg from "../../assets/close.svg";
+import InputSoundSelect from "./InputSoundSelect";
+import { TickingSound } from "./TickingSound.js";
 
-const SettingsModal = ({ pomodoro, long, short }) => {
+const SettingsModal = ({ pomodoro, long, short, tickingSoundType }) => {
   const [formPomodoro, setFormPomodoro] = useState(pomodoro);
   const [formLong, setFormLong] = useState(long);
   const [formShort, setFormShort] = useState(short);
+  const [formTicking, setFormTicking] = useState(tickingSoundType);
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -23,7 +26,12 @@ const SettingsModal = ({ pomodoro, long, short }) => {
         shortBreak: Number(formShort),
       })
     );
+    dispatch(changeTickingSoundType(formTicking));
     dispatch(hideSettings());
+  };
+  const handleTickingSound = (value) => {
+    TickingSound[value].play();
+    setFormTicking(value);
   };
   return (
     <div className="overlay" onClick={() => dispatch(hideSettings())}>
@@ -58,6 +66,15 @@ const SettingsModal = ({ pomodoro, long, short }) => {
             setValue={setFormShort}
           />
         </div>
+        <div className=" flex flex-row m-2 justify-between">
+          <InputSoundSelect
+            label="Ticking sound"
+            value={formTicking}
+            onChange={handleTickingSound}
+            options={Object.keys(TickingSound)}
+          />
+        </div>
+
         <button
           className="bg-indigo-800 text-white font-medium p-1 rounded-sm m-2"
           type="submit"
@@ -73,5 +90,6 @@ SettingsModal.propTypes = {
   pomodoro: PropTypes.number.isRequired,
   long: PropTypes.number.isRequired,
   short: PropTypes.number.isRequired,
+  tickingSoundType: PropTypes.string.isRequired,
 };
 export default SettingsModal;

@@ -5,3 +5,13 @@
 .settings-form {
   @apply flex flex-col  bg-white p-3 rounded-sm relative w-80 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%];
 }
+.input-select {
+  @apply w-[50%] input-border;
+}
+.input-border {
+  @apply border-2 rounded-sm focus:border-indigo-800 outline-none focus-within:border-indigo-800 active:border-indigo-800 focus-visible:border-indigo-800;
+}
+
+.input-option {
+  @apply text-center hover:bg-indigo-600;
+}

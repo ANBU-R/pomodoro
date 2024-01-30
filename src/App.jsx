@@ -5,7 +5,7 @@ import TimeBox from "./features/Timer/TimeBox";
 import Nav from "./Nav";
 
 function App() {
-  const { pomodoro, shortBreak, longBreak } = useSelector(
+  const { pomodoro, shortBreak, longBreak, tickingSoundType } = useSelector(
     (store) => store.timer
   );
   const { settingsVisibility } = useSelector((store) => store.settings);
@@ -19,6 +19,7 @@ function App() {
             pomodoro={pomodoro}
             short={shortBreak}
             long={longBreak}
+            tickingSoundType={tickingSoundType}
           />
         )}
       </main>

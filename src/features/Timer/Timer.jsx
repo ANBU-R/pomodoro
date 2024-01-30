@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ticking from "../../assets/ticking.wav";
+import { TickingSound } from "../Settings/TickingSound.js";
+import { useSelector } from "react-redux";
 
 let timer;
-const audio = new Audio(ticking);
 
 const Timer = ({ min }) => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(min);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const tickingSoundType = useSelector((store) => store.timer.tickingSoundType);
 
   useEffect(() => {
     clearInterval(timer);
@@ -22,18 +23,18 @@ const Timer = ({ min }) => {
 
     timer = setInterval(() => {
       if (intervalSeconds === 0 && intervalMinutes === 0) {
-        audio.pause();
+        TickingSound[tickingSoundType].pause();
         setIsTimerRunning(false);
         clearInterval(timer);
         resetTimer();
       } else if (intervalSeconds === 0) {
-        audio.play();
+        TickingSound[tickingSoundType].play();
         setSeconds(59);
         intervalSeconds = 59;
         intervalMinutes -= 1;
         setMinutes(intervalMinutes);
       } else {
-        audio.play();
+        TickingSound[tickingSoundType].play();
         intervalSeconds -= 1;
         setSeconds(intervalSeconds);
       }
@@ -41,12 +42,12 @@ const Timer = ({ min }) => {
   };
   const stopTimer = () => {
     clearInterval(timer);
-    audio.pause();
+    TickingSound[tickingSoundType].pause();
     setIsTimerRunning(false);
   };
   const resetTimer = () => {
     clearInterval(timer);
-    audio.pause();
+    TickingSound[tickingSoundType].pause();
     setIsTimerRunning(false);
     setSeconds(0);
     setMinutes(min);
