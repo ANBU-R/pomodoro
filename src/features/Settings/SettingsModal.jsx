@@ -54,16 +54,16 @@ const SettingsModal = ({ pomodoro, long, short, tickingSoundType }) => {
             setValue={setFormPomodoro}
           />
           <Input
-            label={"Long"}
-            name={"long"}
-            value={formLong}
-            setValue={setFormLong}
-          />
-          <Input
             label={"Short"}
             name={"short"}
             value={formShort}
             setValue={setFormShort}
+          />
+          <Input
+            label={"Long"}
+            name={"long"}
+            value={formLong}
+            setValue={setFormLong}
           />
         </div>
         <div className=" flex flex-row m-2 justify-between">
