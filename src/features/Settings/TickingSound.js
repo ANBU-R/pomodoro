@@ -1,4 +1,4 @@
-import { CLING, NONE, TICKING } from "../Timer/Const";
+import { CLING, NONE, TICKING } from "../../const.js";
 import ticking from "../../assets/ticking.wav";
 import cling from "../../assets/cling.wav";
 

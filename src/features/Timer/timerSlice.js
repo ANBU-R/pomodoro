@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TICKING } from "./Const";
+import { TICKING } from "../../const.js";
 
 const initialState = {
   pomodoro: 10,
