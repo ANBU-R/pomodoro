@@ -1,4 +1,4 @@
-import { POMODORO, SHORT, LONG } from "./Const.js";
+import { POMODORO, SHORT, LONG } from "../../const.js";
 import PropTypes from "prop-types";
 
 const SwitchButton = ({ currTimer, setCurrTimer }) => {

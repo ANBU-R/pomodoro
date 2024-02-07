@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import "./timeBox.css";
 import Timer from "./Timer";
-import { POMODORO, SHORT, LONG } from "./Const.js";
+import { POMODORO, SHORT, LONG } from "../../const.js";
 import SwitchButton from "./SwitchButton.jsx";
 
 const TimeBox = () => {
