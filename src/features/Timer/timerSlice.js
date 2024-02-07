@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TICKING } from "../../const.js";
+import { TICKING, ALARM_BELL } from "../../const.js";
 
 const initialState = {
   pomodoro: 10,
   shortBreak: 1,
   longBreak: 10,
   tickingSoundType: TICKING,
+  alarmSoundType: ALARM_BELL,
 };
 
 const timerSlice = createSlice({
@@ -23,9 +24,16 @@ const timerSlice = createSlice({
     changeTickingSoundType: (state, action) => {
       state.tickingSoundType = action.payload;
     },
+    changeAlarmSoundType: (state, action) => {
+      state.alarmSoundType = action.payload;
+    },
   },
 });
 
-export const { resetTimer, changeTime, changeTickingSoundType } =
-  timerSlice.actions;
+export const {
+  resetTimer,
+  changeTime,
+  changeTickingSoundType,
+  changeAlarmSoundType,
+} = timerSlice.actions;
 export default timerSlice.reducer;

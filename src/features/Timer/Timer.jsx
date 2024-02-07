@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { TickingSound } from "../Settings/TickingSound.js";
+import { AlarmSound } from "../Settings/AlarmSound.js";
 import { useSelector } from "react-redux";
 import createNotification from "./notification.js";
-import alarmSound from "../../assets/alarm.mp3";
+// import alarmSound from "../../assets/alarmBell.mp3";
 let timer;
-const alarm = new Audio(alarmSound);
+// const alarm = new Audio(alarmSound);
 
 const Timer = ({ min }) => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(min);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const tickingSoundType = useSelector((store) => store.timer.tickingSoundType);
+  const { tickingSoundType, alarmSoundType } = useSelector(
+    (store) => store.timer
+  );
 
   useEffect(() => {
     clearInterval(timer);
@@ -30,7 +33,8 @@ const Timer = ({ min }) => {
         clearInterval(timer);
         resetTimer();
         createNotification({ title: "Time's up" });
-        alarm.play();
+        // alarm.play();
+        AlarmSound[alarmSoundType].play();
       } else if (intervalSeconds === 0) {
         TickingSound[tickingSoundType].play();
         setSeconds(59);

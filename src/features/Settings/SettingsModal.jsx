@@ -2,19 +2,30 @@ import "./Settings.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-
-import { changeTickingSoundType, changeTime } from "../Timer/timerSlice";
+import {
+  changeTickingSoundType,
+  changeTime,
+  changeAlarmSoundType,
+} from "../Timer/timerSlice";
 import Input from "./Input";
 import { hideSettings } from "./settingsSlice";
 import CloseImg from "../../assets/close.svg";
 import InputSoundSelect from "./InputSoundSelect";
 import { TickingSound } from "./TickingSound.js";
+import { AlarmSound } from "./AlarmSound.js";
 
-const SettingsModal = ({ pomodoro, long, short, tickingSoundType }) => {
+const SettingsModal = ({
+  pomodoro,
+  long,
+  short,
+  tickingSoundType,
+  alarmSoundType,
+}) => {
   const [formPomodoro, setFormPomodoro] = useState(pomodoro);
   const [formLong, setFormLong] = useState(long);
   const [formShort, setFormShort] = useState(short);
   const [formTicking, setFormTicking] = useState(tickingSoundType);
+  const [formAlarm, setFormAlarm] = useState(alarmSoundType);
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -27,11 +38,16 @@ const SettingsModal = ({ pomodoro, long, short, tickingSoundType }) => {
       })
     );
     dispatch(changeTickingSoundType(formTicking));
+    dispatch(changeAlarmSoundType(formAlarm));
     dispatch(hideSettings());
   };
   const handleTickingSound = (value) => {
     TickingSound[value].play();
     setFormTicking(value);
+  };
+  const handleAlarmSound = (value) => {
+    AlarmSound[value].play();
+    setFormAlarm(value);
   };
   return (
     <div className="overlay" onClick={() => dispatch(hideSettings())}>
@@ -66,12 +82,18 @@ const SettingsModal = ({ pomodoro, long, short, tickingSoundType }) => {
             setValue={setFormLong}
           />
         </div>
-        <div className=" flex flex-row m-2 justify-between">
+        <div className=" flex flex-col gap-2 m-2 justify-between">
           <InputSoundSelect
             label="Ticking sound"
             value={formTicking}
             onChange={handleTickingSound}
             options={Object.keys(TickingSound)}
+          />
+          <InputSoundSelect
+            label="Alarm Sound"
+            value={formAlarm}
+            onChange={handleAlarmSound}
+            options={Object.keys(AlarmSound)}
           />
         </div>
 
@@ -91,5 +113,6 @@ SettingsModal.propTypes = {
   long: PropTypes.number.isRequired,
   short: PropTypes.number.isRequired,
   tickingSoundType: PropTypes.string.isRequired,
+  alarmSoundType: PropTypes.string.isRequired,
 };
 export default SettingsModal;
