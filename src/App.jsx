@@ -5,9 +5,8 @@ import TimeBox from "./features/Timer/TimeBox";
 import Nav from "./Nav";
 
 function App() {
-  const { pomodoro, shortBreak, longBreak, tickingSoundType } = useSelector(
-    (store) => store.timer
-  );
+  const { pomodoro, shortBreak, longBreak, tickingSoundType, alarmSoundType } =
+    useSelector((store) => store.timer);
   const { settingsVisibility } = useSelector((store) => store.settings);
   return (
     <div className="h-screen">
@@ -20,6 +19,7 @@ function App() {
             short={shortBreak}
             long={longBreak}
             tickingSoundType={tickingSoundType}
+            alarmSoundType={alarmSoundType}
           />
         )}
       </main>
