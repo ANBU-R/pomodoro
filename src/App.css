@@ -6,5 +6,8 @@
   @apply flex flex-row h-[100%] items-center;
 }
 .nav-button {
-  @apply h-[50%] bg-indigo-300 p-1 rounded-sm;
+  @apply h-[50%] bg-indigo-300  p-1 rounded-sm flex items-center justify-between gap-1 hover:bg-indigo-400;
+}
+.nav-button p {
+  @apply text-white font-thin text-sm text-center pb-1  hidden md:block;
 }

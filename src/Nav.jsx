@@ -13,6 +13,7 @@ const Nav = () => {
       </div>
       <button className="nav-button" onClick={() => dispatch(showSettings())}>
         <img src={settingsLogo} className="h-[100%]" alt="settings" />
+        <p>settings</p>
       </button>
     </nav>
   );
