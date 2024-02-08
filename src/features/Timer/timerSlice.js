@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TICKING, ALARM_BELL } from "../../const.js";
 
 const initialState = {
-  pomodoro: 10,
-  shortBreak: 1,
-  longBreak: 10,
-  tickingSoundType: TICKING,
-  alarmSoundType: ALARM_BELL,
+  pomodoro: Number(localStorage.getItem("pomodoro")) || 25,
+  shortBreak: Number(localStorage.getItem("shortBreak")) || 5,
+  longBreak: Number(localStorage.getItem("longBreak")) || 30,
+  tickingSoundType: Number(localStorage.getItem("tickingSoundType")) || TICKING,
+  alarmSoundType: Number(localStorage.getItem("alarmSoundType")) || ALARM_BELL,
 };
 
 const timerSlice = createSlice({
@@ -20,12 +20,17 @@ const timerSlice = createSlice({
       state["pomodoro"] = action.payload.pomodoro;
       state["shortBreak"] = action.payload.shortBreak;
       state["longBreak"] = action.payload.longBreak;
+      localStorage.setItem("pomodoro", action.payload.pomodoro);
+      localStorage.setItem("shortBreak", action.payload.shortBreak);
+      localStorage.setItem("longBreak", action.payload.longBreak);
     },
     changeTickingSoundType: (state, action) => {
       state.tickingSoundType = action.payload;
+      localStorage.setItem("tickingSoundType", action.payload);
     },
     changeAlarmSoundType: (state, action) => {
       state.alarmSoundType = action.payload;
+      localStorage.setItem("alarmSoundType", action.payload);
     },
   },
 });
